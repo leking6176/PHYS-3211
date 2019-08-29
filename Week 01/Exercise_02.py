@@ -49,7 +49,7 @@ import matplotlib.pyplot as plt
 
 
 # read in flattened data from a file and store in variable `data`.
-data = np.loadtxt("Documents/GitHub/PHYS-3211/Week 01/data/DS_Tuc_A_W0400_N5000_B0000_sDart.dat.gz")
+data = np.loadtxt("/Users/brightgreengirl/Documents/GitHub/PHYS-3211/Week 01/data/DS_Tuc_A_W0400_N5000_B0000_sDart.dat.gz")
 
 # YOUR TASK: unflatten the array to recover the original set of 400 
 #            walkers each with 5,000 steps (entries). store the results
