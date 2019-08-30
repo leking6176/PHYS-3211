@@ -11,9 +11,9 @@ import numpy as np
 time=np.linspace(0,10,101)
 
 B=0
-A=10
-alpha=7
-beta=3.1
+A=175000
+alpha=.55
+beta=0
 
 viral_load= A * np.exp(-alpha*time) + B * np.exp(-beta*time)
 #print(viral_load)
@@ -22,3 +22,35 @@ plt.plot(time,viral_load)
 
 data_file= "/Users/brightgreengirl/Documents/GitHub/PHYS-3211/Week 01/data/HIVseries.csv"
 hiv_data=np.loadtxt(data_file, delimiter=",")
+
+#print(hiv_data)
+arraycol1=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+arraycol2=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+n=0
+
+while n != 16:
+    arraycol1[n]=hiv_data[n,0]
+    arraycol2[n]=hiv_data[n,1]
+    n=n+1
+    
+#print(arraycol1)    
+#print(arraycol2)  
+    
+plt.plot(arraycol1,arraycol2)    
+
+"""
+Answers
+
+1)One key assumption we made was that for equation 1.4 we could choose X to be a constant
+    value and set it to be beta/(kv-ki).
+2)If this assumption was not made then finding the trial solution (equation 1.4) would not
+    work 
+3)The two assumtions of equation 1.4 being the correct one and X being a constant simplified
+    the problem because we would have to find the equation to use by using some other more
+    complicated method to find both the equation to use and what constants to use. The form
+    of eq. 1.4 matches up with the form of the viral load equation we use which effectively
+    matched up pretty close with the data we were given when plotted and the constants
+    manipulated.
+
+
+"""

@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Aug 30 10:03:46 2019
+
+Weekly Problem 02: Projectile Motion
+
+@author: Lauren King
+"""
+import numpy as np
+import matplotlib.pyplot as plt
+
+g=9.8
+
+
+mass= input('What is the mass of the ball?:')
+mass=float(mass)
+xi= input('What is the initial position of the ball?(x): ')
+xi=float(xi)
+yi= input('(assuming the ground is y=0) What is the initial position of the ball?(y): ')
+yi=float(yi)
+v=input('What is the velocity of the ball?:')
+v=float(v)
+theta=input('What is the launch angle of the ball?:')
+theta=float(theta)
+drag= input('What is the drag coefficient?:')
+drag=float(drag)
+timestep= input('Time step?:')
+timestep=float(timestep)
+
+
+arraylength= (y-yi)/timestep
+yarray=np.zeroes(arraylength-1)
+xarray=np.zeroes(arraylength-1)
+timearray=np.zeroes(arraylength-1)
+print(arraylength)
+
+time=0
+y=0
+x=0
+i=0
+
+#while y != 0:
+    
+    
+
+        
+        
+    
