@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Aug 30 17:55:43 2019
+
+Exercise 04
+
+@author: Lauren King
+"""
+
+import numpy as np
+
+A= input('What is A?:')
+A=float(A)
+#B= input('What is B?:')
+#B=float(B)
+alpha= input('What is alpha?:')
+alpha=float(alpha)
+#beta= input('What is beta?:')
+#beta=float(beta)
+time= input('What is time?:')
+time=float(time)
+B=0
+viral_load= A * np.exp(-alpha*time) + B * np.exp(-beta*time)
+print("The viral load is " + str(viral_load))
+
+timeb=np.linspace(0,10,101)
+
+
+viral_loadb= A * np.exp(-alpha*timeb) + B * np.exp(-beta*timeb)
+plt.plot(timeb,viral_loadb)
