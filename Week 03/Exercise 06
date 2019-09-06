@@ -1,0 +1,106 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Sep  6 10:01:22 2019
+Random Walking
+
+@author: Lauren King
+"""
+
+#
+import numpy as np
+import numpy.random as rand
+import matplotlib.pyplot as plt
+
+def walk(N):
+    """ Function to compute an N-step random walk
+    
+        Input:
+            N  ::  Total number of steps
+        Output:
+            x  ::  Array of all x positions
+            y  ::  Array of all y positions
+    """
+    # seed random number generator
+    rand.seed()
+
+    # initialize x, y
+    x = [0.0] 
+    y = [0.0]
+
+    # step in x-y space N times
+    for n in range(N):
+        x.append(x[-1] + (rand.random() - 0.5)*2.0)
+        y.append(y[-1] + (rand.random() - 0.5)*2.0)
+    
+    return np.array(x), np.array(y)
+
+
+# Example simulation
+#walker_1 = walk(1000)   # compute path for 1000 steps
+
+# Example plot of (x, y) pairs from example simulation 
+#plt.plot(walker_1[0], walker_1[1], '-')
+#plt.xlabel("X")
+#plt.ylabel("Y")
+#plt.show()
+#print(walker_1[0])
+#print(walker_1[1])
+#xfin=(walker_1[0][1000])
+#yfin=(walker_1[1][1000])
+
+#dist=np.sqrt((xfin**2)+(yfin**2))
+#sdist=str(dist)
+#print("The distance from the origin at the end of the walking cycle is " + sdist)
+"""
+Not every walker is expected to end up the same distance from the origin. The numbers are
+random so each walker should be a different distance away from the origin.
+"""
+walker_1 = walk(1000) 
+walker_3 = walk(1000)
+walker_4 = walk(1000)
+walker_5 = walk(1000)  # compute path for 1000 steps
+plt.plot(walker_1[0], walker_1[1], '-')
+plt.plot(walker_3[0], walker_3[1], '-')
+plt.plot(walker_4[0], walker_4[1], '-')
+plt.plot(walker_5[0], walker_5[1], '-')
+plt.xlabel("X")
+plt.ylabel("Y")
+plt.show()
+
+"""
+The results looks pretty random. Some of the paths look similar to each other while others
+are very much different.The paths cross over over other as well as themselves and each time
+a different path is created with this code is run many times. In each case the path seems
+to equally distributed on the x axis and y axis. 0 in both the x and y direction is usually
+around the center of the graph each time. I'm wondering if maybe somehow the data is made
+to work out to appear nicely random and avoid data that is too similar or maybe it is
+totally random.
+"""
+
+
+n=0
+arraywalk=np.zeros(100)
+
+while n < 100:
+    walker_2=walk(100)
+    xfin=(walker_2[0][100])
+    yfin=(walker_2[1][100])
+    dist=np.sqrt((xfin**2)+(yfin**2))
+    arraywalk[n]=dist
+    n=n+1
+    
+#print(arraywalk)    
+plt.hist(arraywalk)    
+mean=str(arraywalk.mean())
+stdev= str(arraywalk.std())
+med= str(np.median(arraywalk))  
+  
+print("Mean: " + mean)   
+print("Standard Deviation: " + stdev)
+print("Median: " + med)
+
+"""
+This model might be useful in reality for simulating bugs walking around or foot traffic
+in a theme park 
+"""
