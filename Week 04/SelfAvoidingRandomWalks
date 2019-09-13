@@ -14,7 +14,8 @@ rand.seed()
 
 x = [0] 
 y = [0]
-coord=[0,0],[0,0]
+i=0
+coord=[[0,0]]
 
 xsum=0
 ysum=0
@@ -27,31 +28,45 @@ up=[0,1]
 down=[0,-1]
 
 done=0
+tempxsum=0
+tempysum=0
 
 while done == 0:
+    xory=rand.randint(0,2)
+    direc=rand.randint(0,2)
     if xory == 0:
         #goes in x
         if direc == 0:
-            x=[-1,0]
-            xsum=xsum-1
+            #x=[-1,0]
+            tempxsum=xsum-1
         if direc ==1:
-            x=[1,0]
-            xsum=xsum+1
-    else:
+            #x=[1,0]
+            tempxsum=xsum+1
+    elif xory ==1:
         #goes in y
         if direc==0:
-            y=[0,-1]
-            ysum=ysum-1
+            #y=[0,-1]
+            tempysum=ysum-1
         if direc ==1 :
-            y=[0,1]
-            ysum=ysum+1
-    temp=[xsum,ysum]        
+            #y=[0,1]
+            tempysum=ysum+1
+    temp=[tempxsum,tempysum]        
     if temp in coord:
         done=0
-    else:
-        coord.append[temp]
+    elif temp not in coord:
+        ysum=tempysum
+        xsum=tempxsum
+        coord.append(temp)
     last=len(coord)-1
     if coord[last]+right in coord==True and coord[last]+left in coord==True and coord[last]+up==True and coord[last]+down==True:
         done=1
-    
-                
+    else:
+        done=0
+        
+            
+while i < len(coord)+1:
+    x[i]=coord[i][0]
+    y[i]=coord[0][i]
+    i=i+1
+           
+plt.plot(x,y)    
