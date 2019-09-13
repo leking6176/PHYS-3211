@@ -1,0 +1,57 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Sep 11 10:38:48 2019
+
+@author: Lauren King
+"""
+
+import numpy as np
+import numpy.random as rand
+import matplotlib.pyplot as plt
+
+rand.seed()
+
+x = [0] 
+y = [0]
+coord=[0,0],[0,0]
+
+xsum=0
+ysum=0
+
+xory=rand.randint(0,2)
+direc=rand.randint(0,2)
+right=[1,0]
+left=[-1,0]
+up=[0,1]
+down=[0,-1]
+
+done=0
+
+while done == 0:
+    if xory == 0:
+        #goes in x
+        if direc == 0:
+            x=[-1,0]
+            xsum=xsum-1
+        if direc ==1:
+            x=[1,0]
+            xsum=xsum+1
+    else:
+        #goes in y
+        if direc==0:
+            y=[0,-1]
+            ysum=ysum-1
+        if direc ==1 :
+            y=[0,1]
+            ysum=ysum+1
+    temp=[xsum,ysum]        
+    if temp in coord:
+        done=0
+    else:
+        coord.append[temp]
+    last=len(coord)-1
+    if coord[last]+right in coord==True and coord[last]+left in coord==True and coord[last]+up==True and coord[last]+down==True:
+        done=1
+    
+                
