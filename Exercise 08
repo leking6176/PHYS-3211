@@ -1,0 +1,38 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Sep 16 10:10:27 2019
+Exercise 08
+
+@author: Lauren King
+"""
+i=0
+w=0
+sum=0
+h=.25*np.pi
+
+xval=np.arange(-2*np.pi,2*np.pi+.000001,h)
+f=np.sin(xval)
+deriv=np.empty(len(xval))
+diff=np.empty(len(xval))
+compderiv=np.gradient(xval)
+
+while i<len(xval)-1:
+    deriv[i]=((f[i+1]-f[i])/h)
+    i=i+1
+    
+
+while w<len(xval)-1:
+    diff[w]=compderiv[w]-deriv[w]
+    w=w+1
+    
+    
+plt.plot(xval,deriv)
+plt.plot(xval,np.gradient(f,h))
+plt.show()
+
+
+print(deriv)
+print(xval)
+print(np.gradient(xval))
+print(diff)

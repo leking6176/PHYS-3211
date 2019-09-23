@@ -1,0 +1,46 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Sep 18 10:10:21 2019
+Exercise 09
+@author: Lauren King
+"""
+import numpy as np
+#from scipy import quad
+from scipy import integrate
+
+a=0
+b=10
+h=1
+i=0
+w=0
+sum=0
+#trap=0
+sumarr=np.empty(len(xval))
+#traparr=np.empty(len(xval))
+xval=np.arange(a,b+.000001,h)
+f=(xval)**2
+
+while i<len(xval):
+    sum=sum+(f[i]*h)
+    sumarr[i]=sum
+    i=i+1
+x2=lambda x: x**2       
+quadint=integrate.quad(x2,a,b)
+simpsint=integrate.simps(f,xval)
+compint=np.trapz(f,xval,h)  
+
+ 
+
+
+print("Calculated integral is " + str(sum))
+print("Computer calculated integral is "+ str(compint))
+print("The quad function calculated integral is " +str(quadint[0]))
+print("The simps function calculated integral is " +str(simpsint))
+
+a1=0
+b1=2*np.pi
+h1=.25*np.pi
+xval1=np.arange(a1,b1+.000001,h)
+f1=np.sin(xval1*100)
+while 
