@@ -76,3 +76,9 @@ plt.show
 #print(squarey)
 #print(circlex)
 #print(circley)
+
+"""
+I found that to consistently get at least 3.141 then you needed 10 million samples. I
+attempted 100 million samples and got the number even closer to pi but the program
+took a long time to run. 
+"""

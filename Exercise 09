@@ -40,7 +40,57 @@ print("The simps function calculated integral is " +str(simpsint))
 
 a1=0
 b1=2*np.pi
+sum1=0
 h1=.25*np.pi
 xval1=np.arange(a1,b1+.000001,h)
 f1=np.sin(xval1*100)
-#while 
+sumarr1=np.empty(len(xval1))
+k=0
+while k<len(xval1):
+    sum1=sum1+(f1[k]*h1)
+    sumarr[k]=sum1
+    k=k+1
+print("The calculated intergral for the second function is " + str(sum1))    
+    
+sin100x=lambda x: np.sin(100*x)
+quadint1=integrate.quad(sin100x,a1,b1)
+compint1=np.trapz(f1,xval1,h1)  
+print("Computer calculated integral is "+ str(compint1))
+print("The quad function calculated integral is " +str(quadint1[0]))
+simpsint1=integrate.simps(f1,xval1)
+print("The simps function calculated integral is " +str(simpsint1))
+
+a2=0
+b2=2*np.pi
+sum2=0
+h2=.25*np.pi
+xval2=np.arange(a2,b2+.000001,h)
+f2=(np.sin(xval2*100))**xval2
+sumarr2=np.empty(len(xval2))
+q=0
+while q<len(xval2):
+    sum2=sum2+(f2[q]*h2)
+    sumarr[q]=sum2
+    q=q+1
+   
+compint2=np.trapz(f2,xval2,h2)  
+print("Computer calculated integral is "+ str(compint2))
+print("The calculated intergral for the third function is " + str(sum2))    
+#sinx100x=lambda x: (np.sin(100*x))**x
+#quadint2=integrate.quad(sinx100x,a2,b2)
+#print("The quad function calculated integral is " +str(quadint2[0]))
+
+simpsint2=integrate.simps(f2,xval2)
+print("The simps function calculated integral is " +str(simpsint2))
+"""
+The use of the quad function here caused an error
+"""
+"""
+The integrator may have more trouble with the second and third functions because of the 
+oscillating nature of the sine functions which have both positive and negative values.
+In the cases of the second and third functions, the values returned by running the custom
+integral code, the quad integral function, and the simps integral function, all returned
+different values. For the second function the simps value and trapz value were very close
+but this didn't work for the third function.
+
+"""  
