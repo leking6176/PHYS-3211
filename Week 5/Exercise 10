@@ -7,7 +7,7 @@ Excercise 10
 
 @author: Lauren King
 """
-N=100000
+N=1000
 circlex=np.zeros(N)
 circley=np.zeros(N)
 squarex=np.zeros(N)

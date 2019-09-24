@@ -8,3 +8,79 @@ Exercise 11
 @author: Lauren King
 """
 
+import numpy as np
+import matplotlib.pyplot as plt
+a=0
+b=10
+h=1
+i=0
+q=0
+w=0
+sum=0
+randsum=0
+randval=0
+N=1000
+functionrand=np.empty(N)
+randarr=rand.random(N)*10
+randx=np.arange(0,N,1)
+intvalsx=np.arange(0,100,1)
+intvals=np.arange(0,100.0,1)
+meanvals=np.arange(0,100,1)
+sumarr=np.empty(len(xval))
+xval=np.arange(a,b+.000001,h)
+f=(xval)**2
+#while i<len(xval):
+#    sum=sum+(f[i]*h)
+#    sumarr[i]=sum
+#    i=i+1
+#x2=lambda x: x**2    
+
+while q<100:
+    while w<len(randarr):
+        randval=(randarr[w])**2
+        randsum=randsum+randval
+        functionrand[w]=(randsum/N)*10
+        mcvaltemp=randsum/N 
+        mcvalinttemp=10*(randsum/N)   
+        w=w+1
+    randarr=rand.random(N)*10
+    intvals[q]=mcvalinttemp
+    meanvals[q]=mcvaltemp
+    q=q+1
+    randsum=0
+    randval=0
+    w=0
+
+    
+    
+
+mcval=randsum/N 
+mcvalint=10*(randsum/N)   
+#print(functionrand)   
+#print(mcval)
+#print(mcvalint)
+print(intvals)
+#print("Calculated integral is " + str(sum))
+#plt.plot(randx,functionrand)
+plt.hist(intvals, bins='auto')
+
+mean=0
+d=0
+k=0
+
+while d<100:
+    mean=mean+intvals[d]
+    d=d+1
+mean=mean/100
+print(mean)
+
+standtemp=(intvals-mean)**2
+standsum=0
+while k<100:
+    standsum=standsum+standtemp[k]
+    k=k+1
+
+stand=np.sqrt(standsum/100)    
+print(stand)
+bookstand=(5**2)/np.sqrt(10)  
+print(bookstand)  

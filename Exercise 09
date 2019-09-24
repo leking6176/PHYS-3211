@@ -43,4 +43,4 @@ b1=2*np.pi
 h1=.25*np.pi
 xval1=np.arange(a1,b1+.000001,h)
 f1=np.sin(xval1*100)
-while 
+#while 
