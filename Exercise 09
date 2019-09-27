@@ -10,21 +10,29 @@ import numpy as np
 from scipy import integrate
 
 a=0
-b=10
+b=10**4
 h=1
 i=0
 w=0
 sum=0
 #trap=0
+xval=np.arange(a,b+.000001,h)
 sumarr=np.empty(len(xval))
 #traparr=np.empty(len(xval))
-xval=np.arange(a,b+.000001,h)
+
 f=(xval)**2
+j=len(xval)-1
 
 while i<len(xval):
     sum=sum+(f[i]*h)
     sumarr[i]=sum
     i=i+1
+    
+while j>=0:
+    sum1=sum1+(f[j]*h)
+    sumarr[j]=sum1
+    j=j-1
+    
 x2=lambda x: x**2       
 quadint=integrate.quad(x2,a,b)
 simpsint=integrate.simps(f,xval)
@@ -34,6 +42,7 @@ compint=np.trapz(f,xval,h)
 
 
 print("Calculated integral is " + str(sum))
+print("Calculated integral is " + str(sum1))
 print("Computer calculated integral is "+ str(compint))
 print("The quad function calculated integral is " +str(quadint[0]))
 print("The simps function calculated integral is " +str(simpsint))

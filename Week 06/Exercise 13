@@ -1,0 +1,135 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Sep 27 10:01:23 2019
+
+Exercise 13
+
+@author: Lauren King
+"""
+
+"""
+This code is for x**2
+"""
+N=1000
+areax=np.zeros(N)
+areay=np.zeros(N)
+outsidex=np.zeros(N)
+outsidey=np.zeros(N)
+x=(rand.random(N))*10
+y=(rand.random(N))*100
+r=np.empty(N)
+#rval=0
+pondsum=0
+
+i=0
+a=0
+b=0
+while i<N:
+    if y[i]< x[i]**2:
+        pondsum=pondsum+1
+        areax[a]=x[i]
+        areay[a]=y[i]
+        a=a+1
+    else:
+        outsidex[b]=x[i]
+        outsidey[b]=y[i]
+        b=b+1
+        pondsum=pondsum
+    i=i+1    
+        
+areaint=((1000)*pondsum)/N
+print("MC method calculated integral is " +str(areaint))
+print("The integral is 333")
+        
+plt.scatter(outsidex,outsidey)
+plt.scatter(areax,areay)
+
+plt.show()  
+
+"""
+This code is for sin(x)
+"""
+
+N=1000
+areax=np.zeros(N)
+areay=np.zeros(N)
+outsidex=np.zeros(N)
+outsidey=np.zeros(N)
+x=(rand.random(N))*2*np.pi
+y=(rand.random(N))*2-1
+pondsum=0
+
+i=0
+a=0
+b=0
+while i<N:
+    if x[i]<np.pi:
+        if y[i]< np.sin(x[i]) and y[i] >0:
+            pondsum=pondsum+1
+            areax[a]=x[i]
+            areay[a]=y[i]
+            a=a+1
+        else:
+            outsidex[b]=x[i]
+            outsidey[b]=y[i]
+            b=b+1
+            pondsum=pondsum
+    else:
+        if y[i]> np.sin(x[i]) and y[i] <0:
+            pondsum=pondsum+1
+            areax[a]=x[i]
+            areay[a]=y[i]
+            a=a+1
+        else:
+            outsidex[b]=x[i]
+            outsidey[b]=y[i]
+            b=b+1
+            pondsum=pondsum
+    i=i+1   
+
+areaint=((4*np.pi)*pondsum)/N
+print("MC method calculated integral is " +str(areaint))
+print("The integral is 0")
+    
+plt.scatter(outsidex,outsidey)
+plt.scatter(areax,areay)
+
+plt.show()  
+
+"""
+This code is for g(x)
+"""   
+N=1000
+areax=np.zeros(N)
+areay=np.zeros(N)
+outsidex=np.zeros(N)
+outsidey=np.zeros(N)
+x=(rand.random(N))*2
+y=(rand.random(N))*(1/2)*np.exp(4)*np.sin(2)
+pondsum=0
+
+i=0
+a=0
+b=0
+while i<N:
+    if y[i]< (1/2)*np.exp(2*x[i])*np.sin(x[i]):
+        pondsum=pondsum+1
+        areax[a]=x[i]
+        areay[a]=y[i]
+        a=a+1
+    else:
+        outsidex[b]=x[i]
+        outsidey[b]=y[i]
+        b=b+1
+        pondsum=pondsum
+    i=i+1    
+        
+areaint=(((5)*np.exp(4)*np.sin(2))*pondsum)/N
+print("MC method calculated integral is " +str(areaint))
+#print("The integral is 333")
+        
+plt.scatter(outsidex,outsidey)
+plt.scatter(areax,areay)
+
+plt.show()  

@@ -1,0 +1,56 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Sep 25 10:01:36 2019
+
+Exercise 12
+
+@author: Lauren King
+"""
+N=10
+n=10
+w=0
+i=0
+randarr=rand.random(N)
+randsum=0
+randval=0
+total=0
+meanvals=np.arange(0.0,n,1.0)
+functionrand=np.empty(N)
+
+
+
+while i<n:
+    while w<N:
+        randval=(randarr[w])**2
+        randsum=randsum+randval
+        functionrand[w]=(randsum/N)
+        mcvaltemp=randsum/N  
+        w=w+1
+    randarr=rand.random(n)
+    meanvals[i]=mcvaltemp
+    i=i+1
+    total=total+randsum
+    randsum=0
+    randval=0
+    w=0
+
+    
+    
+
+mcval=randsum/n
+print(functionrand)
+print(meanvals)
+#print(mcval)
+#mcvalint=10*(randsum/N) 
+
+mean=0.0
+d=0
+k=0
+
+while d<N:
+    mean=mean+meanvals[d]
+    d=d+1
+
+print(mean) 
+print(total)   
