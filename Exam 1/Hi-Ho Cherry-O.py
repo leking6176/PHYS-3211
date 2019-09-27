@@ -14,7 +14,7 @@ basket=0
 
 spin=rand.random()*7
 
-print("Equal Probabilities")
+print("Old Game: Equal Probabilities")
 
 while basket < 10:
     if spin <=1:
@@ -74,7 +74,7 @@ basket=0
 
 spin=rand.random()*11
 print(" ")
-print("Not Equal Probabilities")
+print("New Game: Not Equal Probabilities")
 
 while basket < 10:
     if spin <=2:
