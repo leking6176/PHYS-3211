@@ -11,10 +11,11 @@ from scipy import integrate
 
 a=0
 b=10**4
-h=1
+h=.001
 i=0
 w=0
 sum=0
+sum1=0
 #trap=0
 xval=np.arange(a,b+.000001,h)
 sumarr=np.empty(len(xval))

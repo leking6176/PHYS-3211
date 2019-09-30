@@ -61,7 +61,7 @@ while basket < 10:
             tree+=2
             spin=rand.random()*7
         print("Bird")
-        print(basket)
+        #print(basket)
     elif spin <= 7:
         basket=0
         tree=10
@@ -121,7 +121,7 @@ while basket < 10:
             tree+=2
             spin=rand.random()*11
         print("Bird")
-        print(basket)
+        #print(basket)
     elif spin <= 11:
         basket=0
         tree=10
