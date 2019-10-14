@@ -1,0 +1,83 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Oct  7 10:01:57 2019
+
+Exercise 15
+
+@author: Lauren King
+"""
+import numpy as np
+import scipy as sc
+
+#Eb=np.arange(7.5,10,.01)
+def f(Eb):
+    f=np.sqrt(10-Eb)*np.tan(np.sqrt(10-Eb))-np.sqrt(Eb)
+    return f
+#f=np.sqrt(10-Eb)*np.tan(np.sqrt(10-Eb))-np.sqrt(Eb)
+plt.plot(Eb,f(Eb))
+plt.show
+plt.ylim(-25,50)
+#plt.grid()
+sc.optimize.bisect(f,8.5,8.75)
+val=sc.optimize.bisect(f,8.5,8.75)
+print("Bisect: " +str(val))
+
+val1=sc.optimize.newton(f,8.6)
+print("Newton: " + str(val1))
+
+"""Taking the inverse of every element of the even form of the equation
+and rearranging the equation from there gives the alternate form of the
+even equation.
+Even equation: sqrt(10-Eb)*tan(sqrt(10-Eb))-sqrt(Eb)=0
+Alternate form: sqrt(Eb)*cot(sqrt(10-Eb))-sqrt(10-Eb)=0
+"""
+def fc(Eb):
+    fc=np.sqrt(Eb)*(1/(np.tan(np.sqrt(10-Eb))))-np.sqrt(10-Eb)
+    return fc
+
+plt.plot(Eb,fc(Eb))
+plt.show()
+plt.ylim(-25,50)
+
+sc.optimize.bisect(fc,8.5,8.75)
+val=sc.optimize.bisect(fc,8.5,8.75)
+print("Bisect(alt): " +str(val))
+
+val1=sc.optimize.newton(fc,8.6)
+print("Newton(alt): " + str(val1))
+
+"""The alternate equation returns the exact same values as the original"""
+
+"""This function curves in the opposite way that the original function does
+but they intersect at the x axis so either could be used to find the value
+we've been trying to solve for the whole time. The alternate form using 
+cotangent is probabably better to use than the original form because
+the cotangent function is just a smooth curve while the original has a spike 
+and must be limited in order to even see what is happeneing in the function
+while the cotangent function is much neater."""
+
+def fctwenty(Eb):
+    fctwenty=np.sqrt(Eb)*(1/(np.tan(np.sqrt(20-Eb))))-np.sqrt(20-Eb)
+    return fctwenty
+
+plt.plot(Eb,fctwenty(Eb))
+plt.show
+
+def fcthirty(Eb):
+    fcthirty=np.sqrt(Eb)*(1/(np.tan(np.sqrt(30-Eb))))-np.sqrt(30-Eb)
+    return fcthirty
+
+plt.plot(Eb,fcthirty(Eb))
+plt.show
+
+"""For these larger values there is no intersect with the x axis."""
+
+sc.optimize.bisect(fc,8.5,8.75)
+val2=sc.optimize.ridder(fc,8.5,8.75)
+print("Ridder(alt): " +str(val2))
+
+"""The third method I chose was the Ridder method. The values for this lined
+up very closely with the values fot the biscetion and Newton Raphson methods.
+This method makes use of exponentials to find the value that intersects the 
+x axis."""

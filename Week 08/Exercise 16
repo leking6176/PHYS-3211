@@ -1,0 +1,62 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Oct  9 09:55:57 2019
+
+Exercise 16
+
+@author: Lauren King
+"""
+import numpy as np
+import scipy as sc
+import time
+
+def f(m):
+    f=np.tanh(m/.5)-m
+    return f
+
+def fv(m):
+    f=np.tanh(m)-m
+    return fv
+
+#f=np.tanh(m/t)-m
+
+#m=np.arange(0,2,.01)
+
+plt.plot(m,f(m))
+plt.show
+
+#plt.plot(m,fv(m))
+#plt.show
+
+
+#plt.plot(m,fv(m))
+#plt.show
+
+start=time.time()
+val=sc.optimize.bisect(f,.75,1.25)
+end=time.time()
+print("Bisect: " + str(val))
+print("time =" + str(end-start))
+
+start=time.time()
+val1=sc.optimize.newton(f,1)
+end=time.time()
+print("Newton: " + str(val1))
+print("time =" +str(end-start))
+
+"""It takes the Newton Raphson Method longer to run than the bisect method"""
+
+"""It makes sense that for t>=1 there are no solutions to the equation.
+When m(t) is plotted for values that are greater than or equal to 1, there
+is no place where the x axis intercepts the curve so there is no way
+we can solve for where the x axis intercepts it because it never happens."""
+
+"""This relates to when hot magma seeps out of the seafloor due to spreading
+and techtonic plate motion. The magme cools down and becomes rock on the
+seafloor and when it cools it is magnetically aligned with the earth's
+magnetic field. Because of this we have evidence that the earth's magnetic 
+field changes every so often and north and south poles switch magnetism.
+This problem deals with magnetization and the spin up and down particles 
+and the relation to temperature so it is useful when trying to understand
+more about the earth's changing magnetic field."""

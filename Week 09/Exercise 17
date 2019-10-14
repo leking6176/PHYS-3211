@@ -1,0 +1,37 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Oct 14 10:02:51 2019
+
+Exercise 17
+
+@author: Lauren King
+"""
+
+import numpy as np
+import scipy as sc
+import scipy.interpolate
+
+i=[1,2,3,4,5,6,7,8,9]
+E=[0,25,50,75,100,125,150,175,200]
+g=[10.6,16.0,45.0,83.5,52.8,19.9,10.8,8.25,4.7]
+w=np.arange(0,200,5)
+
+#plt.plot(i,E)
+plt.scatter(E,g)
+
+a=sc.interpolate.lagrange(E,g)
+
+print(a)
+
+#b=sc.interpolate.lagrange([0,25,50],g)
+
+c=sc.interpolate.CubicSpline(E,g)
+
+d=sc.interpolate.interp1d(E,g)
+
+plt.plot(w,a(w))
+plt.plot(w,c(w))
+plt.plot(w,d(w))
+#plt.plot(w,b(w))
+

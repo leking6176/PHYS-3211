@@ -29,10 +29,13 @@ while i<len(xval):
     sumarr[i]=sum
     i=i+1
     
+print(f[i-1])  
+print(f[j])  
 while j>=0:
     sum1=sum1+(f[j]*h)
     sumarr[j]=sum1
     j=j-1
+    
     
 x2=lambda x: x**2       
 quadint=integrate.quad(x2,a,b)
