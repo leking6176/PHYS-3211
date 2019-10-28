@@ -1,0 +1,68 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Oct 16 10:23:57 2019
+
+Exercise 18
+
+@author: Lauren King
+"""
+import numpy as np
+import scipy as sc
+
+t=[5,15,25,35,45,55,65,75,85,95,105,115]
+n=[32,18,21,8,9,7,6,3,4,0,5,1]
+error=np.sqrt(n)
+tau1=[0,0,0,0,0,0,0,0,0,0,0]
+tau2=[0,0,0,0,0,0,0,0,0,0]
+
+t=np.arange(5,116,10)
+
+
+#print(error)
+
+error[9]=.00000000001
+n[9]=.00000000001
+#print(error)
+def f(t,n,x):
+    f=n*exp(-t/x)
+    return f
+
+
+def fln(t,q,x):
+    fln=np.log(q)-t/x
+    return fln
+
+#a,b=sc.optimize.curve_fit(f,t,n,sigma=error)
+
+c,d=sc.optimize.curve_fit(fln,t,np.log(n))
+
+#print(a)
+#print(b)
+print(c)
+print(d)
+
+no=c[0]
+h=c[1]
+
+g=no*exp(-t/h)
+#plt.plot(t,fln(t,no,h))
+plt.plot(t,g)
+#plt.plot(t,f(t,a))
+
+#i=0
+#while i<len(t)-1:
+#    tau1[i]=(-t[i])/(np.log(n[i])-np.log(32))
+#    i+=1
+    
+#i=0
+#while i<len(t)-2:
+#    tau2[i]=-5/(np.log(t[i+1])-np.log(t[i]))
+#    i+=1
+    
+    
+    
+#print(tau1)
+#print(tau2)    
+plt.plot(t,n)
+

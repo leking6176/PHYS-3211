@@ -1,0 +1,87 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Oct 21 09:59:15 2019
+
+Exercise 19
+
+@author: Lauren King
+"""
+
+import numpy as np
+import scipy as sc
+k=1
+m=1
+
+def v(x,p):
+    v=(1/p)*k*(x**p)
+    return v
+
+#print(v(2,2))
+#print(v(2,4))
+#print(v(2,6))
+#print(v(2,8))
+#print(v(2,10))
+#print(v(2,12))
+
+#def fk(x,p):
+#    fk=-k*x**(p-1)
+#    return fk
+
+
+#def f(x,t):
+#    f=(y(t+1)-y(t))/h
+#    return f
+
+t=np.arange(0,10.001,.01)
+
+
+x=np.arange(0,10.001,.01)
+x[0]=.001
+
+y=np.arange(0,10.001,.01)
+y[0]=.001
+
+
+#def v(x):
+#    v=-(k*x**2)/(2)
+#    return v
+
+def f(x,p):
+    f=-k*(x**(p-1))
+    return f
+
+#def vx(t):
+#    vx=(x[t+h]-x[t])/h
+#    return vx
+
+i=1
+
+h=.01
+
+while i<len(t-1):
+    
+    y[i]=y[i-1]+f(x[i-1],2)*h
+    x[i]=x[i-1]+y[i]*h
+    
+    i=i+1
+    
+
+#while w<len(t-1):
+#    y[w]=y[w-1]+v(x[w],2)*h
+#    w=w+1
+
+
+    
+#print(x)    
+#print(y)
+
+plt.plot(t,x)
+plt.plot(t,y)
+
+"""
+1) When p=2 we get an oscillating sinusoidal function. This makes sense
+    because this is what we would expect from a problem meant to 
+    simulate an object on a spring.   
+
+"""

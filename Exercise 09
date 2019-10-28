@@ -11,10 +11,10 @@ from scipy import integrate
 
 a=0
 b=10**4
-h=.001
+h=.01
 i=0
 w=0
-sum=0
+sum2=0
 sum1=0
 #trap=0
 xval=np.arange(a,b+.000001,h)
@@ -24,9 +24,11 @@ sumarr=np.empty(len(xval))
 f=(xval)**2
 j=len(xval)-1
 
+print(f[i])
+
 while i<len(xval):
-    sum=sum+(f[i]*h)
-    sumarr[i]=sum
+    sum2=sum2+(f[i]*h)
+    sumarr[i]=sum2
     i=i+1
     
 print(f[i-1])  
@@ -35,7 +37,7 @@ while j>=0:
     sum1=sum1+(f[j]*h)
     sumarr[j]=sum1
     j=j-1
-    
+print(f[j])    
     
 x2=lambda x: x**2       
 quadint=integrate.quad(x2,a,b)
@@ -45,7 +47,7 @@ compint=np.trapz(f,xval,h)
  
 
 
-print("Calculated integral is " + str(sum))
+print("Calculated integral is " + str(sum2))
 print("Calculated integral is " + str(sum1))
 print("Computer calculated integral is "+ str(compint))
 print("The quad function calculated integral is " +str(quadint[0]))
