@@ -100,7 +100,7 @@ def euler(m,x,v,k,p,h):
         xarr[i]=xarr[i-1]+yarr[i]*h
         i=i+1
     
-    return y,x
+    return yarr,xarr
 #while (x<b):
 #    if((t+h)>b):
 #        h=b-t
