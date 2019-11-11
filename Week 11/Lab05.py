@@ -23,8 +23,10 @@ def statf(cs,m,v):
     return statf
 
 def kinf(ck,m,v1,v2):
-    if v==0:
+    if v1==0:
         kinf=0
+    elif v2==0:
+        kinf=-m*ck*(v1/np.abs(v1))*9.8
     elif v1/v2 < 0:
         kinf=0
     else:
@@ -35,13 +37,18 @@ def viscf(b,v):
     viscf=-b*v
     return viscf
 
+def fext(f0,w,t):
+    fext=f0*np.sin(w*t)
+    return fext
+    
+
 def eulerfriction(m,x,v,k,p,h,cs,ck,b):
     xpos=np.arange(0,10.001,.01)
     xpos[0]=x
     vel=np.arange(0,10.001,.01)
     vel[0]=v
     t=np.arange(0,10.001,.01)
-    vel[1]=vel[0]+(f(k,xpos[0],p)+statf(ck,m,vel[0])+kinf(ck,m,vel[0],1)+viscf(b,vel[0]))*(h/m)
+    vel[1]=vel[0]+(f(k,xpos[0],p)+statf(ck,m,vel[0])+kinf(ck,m,v,1)+viscf(b,vel[0]))*(h/m)
     xpos[1]=xpos[0]+vel[1]*h
     i=2
     
@@ -67,6 +74,22 @@ def euler(m,x,v,k,p,h):
         i=i+1
     
     return yarr,xarr
+
+def eulerforce(m,x,v,k,p,h,f0,w):
+    i=1
+    xpos=np.arange(0,10.001,.01)
+    xpos[0]=x
+    vel=np.arange(0,10.001,.01)
+    vel[0]=v
+    
+    t=np.arange(0,10.001,.01)
+    
+    while i<len(t-1):
+        vel[i]=vel[i-1]+f(k,xpos[i-1],p)*(h/m)+fext(f0,w,t[i])*(h/m)
+        xpos[i]=xpos[i-1]+vel[i]*h
+        i=i+1
+    
+    return vel,xpos
 
 """
 def rk2(m,x,v,k,p,h):
@@ -107,6 +130,7 @@ v0=0
 x0=2
 k=10
 h=.01
+f0=20
 
 #a=rk2(m,x0,v0,k,2,h)
 
@@ -126,12 +150,17 @@ h=.01
 c=euler(m,x0,v0,k,2,h)
 d=eulerfriction(m,x0,v0,k,2,h,.3,.2,0)
 
-
+e=eulerforce(m,x0,v0,k,2,h,f0,np.pi)
 
 plt.plot(t,c[0])
 plt.plot(t,c[1])
 
+plt.show()
+
 plt.plot(t,d[0])
 plt.plot(t,d[1])
 
+plt.show()
 
+plt.plot(t,e[0])
+plt.plot(t,e[1])
