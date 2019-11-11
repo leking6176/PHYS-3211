@@ -18,7 +18,7 @@ def f(m,ang):
 m=2
 l=1
 v0=0
-ang0=(np.pi)/5
+ang0=(np.pi)/3
 
 vlist=[v0]
 anglist=[ang0]
@@ -33,16 +33,16 @@ xlist=[x0]
 
 g=9.8
 
-dt=.01
+h=.01
 t=0.0
 
 tlist=[t]
 
 i=0
 while i<1000:
-    t=t+dt
-    v0= v0+ (dt/m)*f(m,ang0)
-    ang0= ang0+v0*dt
+    t=t+h
+    v0= v0+ (h/m)*f(m,ang0)
+    ang0= ang0+v0*h
     vlist.append(v0)
     anglist.append(ang0)
     tlist.append(t)
@@ -70,6 +70,7 @@ plt.plot(tlist,ylist)
 
 plt.show()
 plt.plot(xlist,ylist)
+plt.show()
 
 stop=0
 i=1
@@ -82,3 +83,59 @@ while stop==0:
         i=i+1
 
 print("Theoretical time period: "+str(period))
+
+anglist2=[anglist[0]*h]
+
+w=0
+while w<1000:
+    anglist2.append(anglist[w]*2)
+    w=w+1
+
+
+plt.plot(anglist,anglist2)
+
+
+def fair(r,vel):
+    fair=.5*1.2*np.pi*(r**2)*.5*(vel**2)
+    return fair
+i=0
+
+
+v0=0
+ang0=np.pi/2
+x0=np.sin(ang0)*l
+y0=np.cos(ang0)*l
+yairlist=[y0]
+xairlist=[x0]
+vairlist=[0]
+tairlist=[0.0]
+angairlist=[ang0]
+v0=0
+ang0=np.pi/2
+
+
+while i<1000:
+    t=t+h
+    fsum=f(m,ang)-fair(.01,v0)
+    v0= v0+ (h/m)*fsum
+    ang0= ang0+v0*h
+    vairlist.append(v0)
+    angairlist.append(ang0)
+    tairlist.append(t)
+    i=i+1
+    
+q=0
+while q<1000:
+    a=np.sin(angairlist[q])*l
+    b=np.cos(angairlist[q])*l
+    xairlist.append(a)
+    yairlist.append(b)
+    q=q+1    
+        
+plt.plot(tairlist,angairlist)
+plt.show()
+
+plt.plot(tairlist,xairlist)
+#plt.show()
+
+plt.plot(tairlist,yairlist)     
