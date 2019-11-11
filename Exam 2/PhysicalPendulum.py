@@ -3,7 +3,7 @@
 """
 Created on Sun Nov 10 17:22:07 2019
 
-Physical Pendulum 2
+Physical Pendulum
 
 @author: Lauren King
 """
@@ -57,6 +57,18 @@ while q<1000:
     ylist.append(b)
     q=q+1
     
+xvel=[0]
+yvel=[0]  
+
+k=1
+while k<=1000:
+    xvel.append(np.cos(anglist[k])*vlist[k])
+    yvel.append(np.sin(anglist[k])*vlist[k])
+    k=k+1
+    
+plt.plot(xvel,yvel)    
+plt.show()
+    
 period= 2*np.pi*np.sqrt(l/g)    
   
 
@@ -86,14 +98,20 @@ print("Theoretical time period: "+str(period))
 
 anglist2=[anglist[0]*h]
 
-w=0
-while w<1000:
+
+
+w=1
+while w<=1000:
     anglist2.append(anglist[w]*2)
     w=w+1
 
 
 plt.plot(anglist,anglist2)
 
+
+
+"""
+Attempt at air resistance
 
 def fair(r,vel):
     fair=.5*1.2*np.pi*(r**2)*.5*(vel**2)
@@ -139,3 +157,5 @@ plt.plot(tairlist,xairlist)
 #plt.show()
 
 plt.plot(tairlist,yairlist)     
+
+"""
