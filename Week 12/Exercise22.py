@@ -20,6 +20,7 @@ dvals=np.arange(-100,100,.001)
 
 
 
+
 def kappa(m,energy):
     kappa=np.sqrt(((2*m)/(hbar**2))*energy)
     return kappa
@@ -89,21 +90,28 @@ while i<len(xpos)-1:
         vals[i]=ins
         i=i+1    
 """    
+vals[0]=npsi(m,energy,-100)
+k=kappa(m,energy)
+dvals[0]=sign(-100)*k*npsi(m,energy,-100)
+
 
 q=(2*m)/(hbar**2)
 v=0
 i=1
 dx=.001
-while i < len(xpos)-1:
+while i <= len(xpos)-1:
     if abs(xpos[i]) > a:
         v=0
     else:
         v=83
         
     k=kappa(m,energy)
-    dvals[i]=dvals[i-1]+(q*v+k**2)*dx
+    dvals[i]=dvals[i-1]+(q*v+k**2)*npsi(m,energy,xpos[i-1])*dx
+    #dvals[i]=dvals[i-1]+(q*v+k**2)*vals[i-1]*dx
     vals[i]=npsi(m,energy,xpos[i-1])+dvals[i-1]*dx
+    #vals[i]=vals[i-1]+dvals[i-1]*dx
     i=i+1
             
-plt.plot(xpos,vals)       
+plt.plot(xpos,vals)
+#plt.plot(xpos,dvals)       
         
