@@ -10,7 +10,7 @@ Weekly Problem 02: Projectile Motion
 import numpy as np
 import matplotlib.pyplot as plt
 
-g=9.8
+g=0
 
 
 mass= input('What is the mass of the ball?:')
@@ -19,31 +19,69 @@ xi= input('What is the initial position of the ball?(x): ')
 xi=float(xi)
 yi= input('(assuming the ground is y=0) What is the initial position of the ball?(y): ')
 yi=float(yi)
-v=input('What is the velocity of the ball?:')
-v=float(v)
+v0=input('What is the velocity of the ball?:')
+v0=float(v0)
 theta=input('What is the launch angle of the ball?:')
 theta=float(theta)
 drag= input('What is the drag coefficient?:')
 drag=float(drag)
-timestep= input('Time step?:')
-timestep=float(timestep)
+#timestep= input('Time step?:')
+#timestep=float(timestep)
+h=.01
+
+vy=np.sin(theta*np.pi/180)*v0
+vx=np.cos(theta*np.pi/180)*v0
 
 
-arraylength= (y-yi)/timestep
-yarray=np.zeroes(arraylength-1)
-xarray=np.zeroes(arraylength-1)
-timearray=np.zeroes(arraylength-1)
-print(arraylength)
+ypos=yi
+xpos=xi
 
-time=0
-y=0
-x=0
-i=0
+yarr=[ypos]
+xarr=[xpos]
 
-#while y != 0:
-    
-    
+yarr1=[ypos]
+xarr1=[xpos]
+vy1=vy
+vx1=vx
+ypos1=ypos
+xpos1=xpos
 
+i=1
+q=0
+
+while ypos>=0:
+    vx=vx-drag*vx*h
+    vy=vy-g*h-drag*vy*h
+    xpos=xpos+vx*h
+    ypos=ypos+vy*h
+    yarr.append(ypos)
+    xarr.append(xpos)
+    #q=q+i
+
+while ypos1>=0:
+    vx1=vx1
+    vy1=vy1-g*h
+    xpos1=xpos1+vx1*h
+    ypos1=ypos1+vy1*h
+    yarr1.append(ypos1)
+    xarr1.append(xpos1)    
+
+
+
+plt.plot(xarr,yarr)
+plt.plot(xarr1,yarr1)
         
+
+"""
+2) When air resistance is added, the ball's velocity in both the x and y
+    directions should decrease over time and the ball will not go as far.
+4)The result is the velocity of the ball is hindered greatly by the air
+    resistance. The ball does not go as far as it would if there was 
+    no air resistance. The plot produced displays both the trajectory
+    of the ball if there was no air resistance and the realistic trajectory
+    of air resistance being present.
+    
+
+"""
         
     

@@ -18,10 +18,11 @@ alpha= input('What is alpha?:')
 alpha=float(alpha)
 #beta= input('What is beta?:')
 #beta=float(beta)
-time= input('What is time?:')
-time=float(time)
+#time= input('What is time?:')
+#time=float(time)
 B=0
-viral_load= A * np.exp(-alpha*time) + B * np.exp(-beta*time)
+beta=0
+#viral_load= A * np.exp(-alpha*time) + B * np.exp(-beta*time)
 print("The viral load is " + str(viral_load))
 
 timeb=np.linspace(0,10,101)
@@ -29,3 +30,23 @@ timeb=np.linspace(0,10,101)
 
 viral_loadb= A * np.exp(-alpha*timeb) + B * np.exp(-beta*timeb)
 plt.plot(timeb,viral_loadb)
+
+
+#viral_load2= 2 * np.exp(-1*timeb) + B * np.exp(-2*timeb)
+#viral_load3= 3 * np.exp(-1*timeb) + B * np.exp(-3*timeb)
+#viral_load4= 4 * np.exp(-1*timeb) + B * np.exp(-4*timeb)
+#viral_load5= 5 * np.exp(-1*timeb) + B * np.exp(-5*timeb)
+
+
+#plt.plot(timeb,viral_load2, label='Numbers set to 2')
+#plt.plot(timeb,viral_load3, label='Numbers set to 3')
+#plt.plot(timeb,viral_load4, label='Numbers set to 4')
+#plt.plot(timeb,viral_load5, label='Numbers set to 5')
+
+#plt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.05))
+
+
+plt.title('HIV Viral Load')
+plt.xlabel('Time')
+plt.ylabel('Viral Load')
+
