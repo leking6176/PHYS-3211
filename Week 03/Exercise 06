@@ -101,6 +101,6 @@ print("Standard Deviation: " + stdev)
 print("Median: " + med)
 
 """
-This model might be useful in reality for simulating bugs walking around or foot traffic
-in a theme park 
+This model might be useful in reality for simulating bugs walking around
+or foot traffic in a theme park.
 """

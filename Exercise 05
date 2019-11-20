@@ -33,7 +33,7 @@ while i <= N:
     
 while w >=1:
      num2= 1/w
-     sum2+=num2
+     sum2=sum2+num2
      array2[k]=sum2
      k+=1
      w-=1
@@ -45,13 +45,19 @@ arraysum=np.arange(N+1)
 
 arrayn=np.arange(N+1)
 
+q=1
 while q<N:
-#    arraysum[q]=((array1[q])-(array2[q]))/((array1[q])+(array2[q]))
-    q+=1
+    arraysum[q]=((array1[q])-(array2[q]))/abs(((array1[q]))+abs((array2[q])))
+    q=q+1
     
     
 print(array1)
 print(array2)
 print(arrayn)
 print(arraysum)
-#plt.plot(arrayn,arraysum)    
+plt.plot(arrayn,arraysum)
+
+"""
+The downward sum is more accurate because the program is less likely to 
+loose some precision while summing numbers together.
+"""
