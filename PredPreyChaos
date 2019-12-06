@@ -1,0 +1,156 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Nov 27 22:14:02 2019
+
+Predator-Prey Chaos
+
+@author: Lauren King
+"""
+import numpy as np
+psum1=0
+psum2=0
+psum3=0
+psum4=0
+
+
+h=0.01
+a=[1.0,0.72,1.53,1.27]
+b=[[1.0,1.09,1.52,0.0],
+   [0.0,1.0,0.44,1.36],
+   [2.33,0.0,1.0,0.47],
+   [1.21,0.51,0.35,1.0]]
+
+p_i=[0.3013,
+   0.4586,
+   0.1307,
+   0.3557]
+
+t=np.arange(0,400.001,.01)
+
+#p1=np.arange(0,100.001,.01)
+#p2=np.arange(0,100.001,.01)
+#p3=np.arange(0,100.001,.01)
+#p4=np.arange(0,100.001,.01)
+pop=[np.arange(0,400.001,.01),np.arange(0,400.001,.01),np.arange(0,400.001,.01),np.arange(0,400.001,.01)]
+
+pop[0][0]=p_i[0]
+pop[1][0]=p_i[1]
+pop[2][0]=p_i[2]
+pop[3][0]=p_i[3]
+
+dp1=0
+dp2=0
+dp3=0
+dp4=0
+
+w=1
+while w<len(t):
+    q=0
+    while q<4:
+        psum1=psum1+((b[0][q])*pop[q][w-1])
+        #dp1=dp1+(a[0]*p_i[0]*(1-(b[0][q])*pop[q][w-1]))*h
+        q=q+1
+    #pop[0][w]=dp1+pop[0][w-1]
+    dp1=a[0]*pop[0][w-1]*(1-psum1)*h
+    pop[0][w]=dp1+pop[0][w-1]
+    q=0
+    while q<4:
+        psum2=psum2+((b[1][q])*pop[q][w-1])
+        #dp2=dp2+(a[1]*p_i[1]*(1-(b[1][q])*pop[q][w-1]))*h
+        q=q+1
+    #pop[1][w]=dp2+pop[1][w-1]
+    dp2=a[1]*pop[1][w-1]*(1-psum2)*h
+    pop[1][w]=dp2+pop[1][w-1]
+    q=0
+    while q<4:
+        psum3=psum3+((b[2][q])*pop[q][w-1])
+        #dp3=dp3+(a[2]*p_i[2]*(1-(b[2][q])*pop[q][w-1]))*h
+        q=q+1
+    #pop[2][w]=dp3+pop[2][w-1]
+    dp3=a[2]*pop[2][w-1]*(1-psum3)*h
+    pop[2][w]=dp3+pop[2][w-1]
+    q=0
+    while q<4:
+        psum4=psum4+((b[3][q])*pop[q][w-1])
+        #dp4=dp4+(a[3]*p_i[3]*(1-(b[3][q])*pop[q][w-1]))*h
+        q=q+1
+    #pop[3][w]=dp4+pop[3][w-1]
+    dp4=a[3]*pop[3][w-1]*(1-psum4)*h
+    pop[3][w]=dp4+pop[3][w-1]
+    
+    dp1=0
+    psum1=0
+    dp2=0
+    psum2=0
+    dp3=0
+    psum3=0
+    dp4=0
+    psum4=0
+    w=w+1
+    
+    
+plt.plot(t,pop[0])
+plt.plot(t,pop[1])
+plt.plot(t,pop[2])
+plt.plot(t,pop[3])
+import matplotlib.pyplot as plt
+import numpy as np
+fig = plt.figure()
+ax = plt.subplot(111)
+ax.plot(t, pop[0], label='Species 1')
+ax.plot(t, pop[1], label='Species 2')
+ax.plot(t, pop[2], label='Species 3')
+ax.plot(t, pop[3], label='Species 4')
+plt.title("Predator-Prey Chaos")
+plt.xlabel("Time")   
+plt.ylabel("Population") 
+ax.legend()
+plt.show()
+
+"""
+p=[0.3013,
+   0.4586,
+   0.1307,
+   0.3557]
+
+t=np.arange(0,1000.001,.01)
+
+prey1=np.arange(0,1000.001,.01)
+prey2=np.arange(0,1000.001,.01)
+prey3=np.arange(0,1000.001,.01)
+prey4=np.arange(0,1000.001,.01)
+
+prey1[0]=p[0]
+prey2[0]=p[1]
+prey3[0]=p[2]
+prey4[0]=p[3]
+
+
+def preystep(i):
+    j=0
+    psum=0
+    while j<4:
+        psum=psum+(b[i][j])*p[j]
+        j=j+1
+    preystep= a[i]*p[i-1]*(1-psum)
+    return preystep
+    
+
+w=1
+while w<len(t):
+    prey1[w]=preystep(0)*h+prey1[w-1]
+    prey2[w]=preystep(1)*h+prey2[w-1]
+    prey3[w]=preystep(2)*h+prey3[w-1]
+    prey4[w]=preystep(3)*h+prey4[w-1]
+    w=w+1
+    
+plt.plot(t,prey1)
+plt.plot(t,prey2)
+plt.plot(t,prey3)
+plt.plot(t,prey4)
+
+
+"""
+
+    
