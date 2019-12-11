@@ -7,7 +7,7 @@ Exercise 23
 
 @author: Lauren King
 """
-
+import math
 import numpy as np
 
 m=0.1

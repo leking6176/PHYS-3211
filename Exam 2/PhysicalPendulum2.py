@@ -10,6 +10,7 @@ Physical Pendulum 2
 
 import numpy as np
 import scipy as sc
+import matplotlib.pyplot as plt
 
 def f(m,ang):
     f=-m*g*np.sin(ang)
@@ -70,6 +71,7 @@ plt.plot(tlist,ylist)
 
 plt.show()
 plt.plot(xlist,ylist)
+
 
 stop=0
 i=1

@@ -7,7 +7,7 @@ Physical Pendulum
 
 @author: Lauren King
 """
-
+import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sc
 
@@ -66,22 +66,48 @@ while k<=1000:
     yvel.append(np.sin(anglist[k])*vlist[k])
     k=k+1
     
-plt.plot(xvel,yvel)    
+fig = plt.figure()
+ax = fig.add_subplot(111)
+plt.plot(xvel,yvel)
+ax=fig.add_subplot(111)
+ax.set_xlabel('X Direction Velocity')
+ax.set_ylabel('Y Direction Velocity')   
 plt.show()
     
 period= 2*np.pi*np.sqrt(l/g)    
   
 
+fig = plt.figure()
+ax = fig.add_subplot(111)
 plt.plot(tlist,anglist)
+ax=fig.add_subplot(111)
+ax.set_xlabel('Angle')
+ax.set_ylabel('Time')
 plt.show()
 
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
 plt.plot(tlist,xlist)
+ax=fig.add_subplot(111)
+ax.set_xlabel('Time')
+ax.set_ylabel('X Position')
 #plt.show()
 
-plt.plot(tlist,ylist) 
+fig = plt.figure()
+ax = fig.add_subplot(111)
+plt.plot(tlist,ylist)
+ax=fig.add_subplot(111)
+ax.set_xlabel('Time')
+ax.set_ylabel('Y Position')
 
 plt.show()
+fig = plt.figure()
+ax = fig.add_subplot(111)
 plt.plot(xlist,ylist)
+ax=fig.add_subplot(111)
+ax.set_xlabel('X Position')
+ax.set_ylabel('Y Position')
 plt.show()
 
 stop=0
@@ -96,13 +122,13 @@ while stop==0:
 
 print("Theoretical time period: "+str(period))
 
-anglist2=[anglist[0]*h]
+anglist2=[0]
 
 
 
-w=1
-while w<=1000:
-    anglist2.append(anglist[w]*2)
+w=0
+while w<1000:
+    anglist2.append((anglist[w]-anglist[w+1])/h)
     w=w+1
 
 
